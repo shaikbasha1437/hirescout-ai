@@ -1,0 +1,8 @@
+{
+  "name": "hirescout-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A recruiting agent in the browser: evidence-cited resume screening with blind mode and fairness checks, prompt-injection flags, interview scheduling across time zones, interview kits and a pipeline board.",
+  "license": "MIT",
+  "scripts": { "test": "node --test test/*.test.js" }
+}
