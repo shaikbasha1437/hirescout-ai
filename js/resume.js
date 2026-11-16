@@ -100,7 +100,7 @@
     if (!p.ranges.length) out.push({ id: 'dates', label: 'No employment dates, so years of experience can\u2019t be checked', severity: 'high' });
     if (!p.skills.length) out.push({ id: 'skills', label: 'No recognisable skills', severity: 'high' });
     if (!p.education.length) out.push({ id: 'education', label: 'No education listed (fine if the role doesn\u2019t need it)', severity: 'low' });
-    if (p.words < 80) out.push({ id: 'short', label: 'Very short resume (' + p.words + ' words)', severity: 'medium' });
+    if (p.words < 50) out.push({ id: 'short', label: 'Very short resume (' + p.words + ' words)', severity: 'medium' });
     for (const k of (o && o.knockouts) || []) if (!o.answers || !o.answers[k.id]) out.push({ id: 'ko-' + k.id, label: 'Knockout not answered: ' + k.q, severity: 'medium' });
     return out;
   }

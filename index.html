@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HireScout AI: a recruiting agent that screens on evidence and schedules interviews</title>
+  <meta name="description" content="Score resumes against a structured scorecard with quoted evidence, blind screening and fairness checks, flag prompt injection hidden in resumes, and schedule interview loops across time zones. Runs in your browser; demo mode needs no key.">
+  <meta name="theme-color" content="#1b2340">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <script>try { var t = localStorage.getItem('hs.theme'); if (t ? JSON.parse(t) === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark'); } catch (e) {}</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <a class="brand" href="./"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="14" cy="14" r="9" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M21 21l7 7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><path d="M10 14.5l3 3 5-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>HireScout <b>AI</b></a>
+    <nav aria-label="App">
+      <button type="button" id="nav-help">How it works</button>
+      <button type="button" id="nav-export">Export</button>
+      <button type="button" id="nav-settings">Settings</button>
+      <button type="button" id="nav-theme" aria-label="Toggle dark theme" title="Toggle dark theme">◐</button>
+    </nav>
+  </header>
+  <main id="main">
+    <section id="book-view" hidden></section>
+    <div id="app-view">
+      <section class="hero">
+        <p class="eyebrow">THE RECRUITING AGENT</p>
+        <h1>Screen on <em>evidence</em>, schedule without the back-and-forth.</h1>
+        <p class="lede">Every score quotes the resume line it came from. Blind mode hides names and other personal details before scoring, instructions hidden in resumes are flagged and ignored, and people make every decision. Demo data is a fictional company on <code>.example</code> addresses; nothing is ever sent.</p>
+        <div class="status-row"><span class="pill" id="mode-pill">Demo mode · no key</span><span class="pill">Fictional company: Quillmark</span><span class="pill ok">Recommendations only · drafts only</span><span class="pill" id="store-pill">Saved in this browser</span></div>
+      </section>
+      <section class="panel ctx" aria-label="Job and screening mode">
+        <div class="ctx-row">
+          <div class="field"><label for="job-select">Job</label><select id="job-select"></select></div>
+          <label class="switch" for="blind-toggle"><input type="checkbox" id="blind-toggle"><span class="track" aria-hidden="true"></span><span><b>Blind screening</b><span class="small muted" id="blind-help"> hides names, contact details, addresses, graduation years and personal details</span></span></label>
+          <div class="ctx-actions"><button type="button" id="upload-btn" class="primary">+ Add resumes</button><button type="button" id="new-job">New job</button></div>
+        </div>
+        <div id="job-summary" class="hire-summary"></div>
+      </section>
+      <nav class="tabs" id="tabs" role="tablist" aria-label="Sections">
+        <button type="button" role="tab" data-tab="candidates">Candidates</button>
+        <button type="button" role="tab" data-tab="pipeline">Pipeline</button>
+        <button type="button" role="tab" data-tab="schedule">Schedule</button>
+        <button type="button" role="tab" data-tab="interviews">Interview kits</button>
+        <button type="button" role="tab" data-tab="audit">Fairness &amp; audit</button>
+        <button type="button" role="tab" data-tab="job">Job &amp; scorecard</button>
+      </nav>
+      <section id="panel" class="tabpanel" role="tabpanel" aria-live="polite"></section>
+    </div>
+    <footer class="foot small muted">HireScout AI is open source (MIT). It recommends; people decide. It is not a compliance tool and gives no legal advice. Calendars, invites and the candidate scheduling page are simulated or drafted; nothing leaves your browser except, in live mode, the blinded resume and scorecard sent to the AI provider you pick. <a href="https://github.com/shaikbasha1437/hirescout-ai">Source on GitHub</a>.</footer>
+  </main>
+  <div id="modal-host"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/text.js"></script>
+  <script src="js/guard.js"></script>
+  <script src="js/fairness.js"></script>
+  <script src="js/resume.js"></script>
+  <script src="js/scoring.js"></script>
+  <script src="js/schedule.js"></script>
+  <script src="js/kits.js"></script>
+  <script src="js/docs.js"></script>
+  <script src="js/exporter.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/llm.js"></script>
+  <script src="js/webllm.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+  <script>if ('serviceWorker' in navigator && location.protocol !== 'file:') addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));</script>
+</body>
+</html>

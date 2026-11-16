@@ -60,6 +60,8 @@
     sub(PHONE, 'phone', (m) => (m.replace(/\D/g, '').length >= 10 ? '[phone]' : m));
     sub(STREET, 'address', '[address]');
     sub(ZIP, 'address', '[location]');
+    // City and state in the first few (header) lines.
+    s = s.split('\n').map((line, i) => (i < 4 ? line.replace(/\b[A-Z][a-zA-Z.]+(?: [A-Z][a-zA-Z.]+){0,2},\s*[A-Z]{2}\b/g, (m) => { red.push({ type: 'location', original: m }); return '[location]'; }) : line)).join('\n');
     // Names: full name, then each part of 2+ letters, plus common nickname forms of the first name.
     const name = String((who && who.name) || '').replace(/[^A-Za-z\u00C0-\u024F' -]/g, ' ').trim();
     if (name) {
